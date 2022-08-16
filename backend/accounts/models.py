@@ -89,3 +89,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self) -> str:
         return self.email
+
+
+class Address(models.Model):
+    user = models.ForeignKey("User", verbose_name=_(
+        "user"), on_delete=models.CASCADE)
+    city = models.CharField(_("City"), max_length=50)
+    street = models.CharField(_("street"), max_length=50)
+    alley = models.CharField(_("Alley"), max_length=50)
+    post_code = models.CharField(_("Post code"), max_length=10)
