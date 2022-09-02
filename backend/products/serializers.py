@@ -20,7 +20,7 @@ from .models import Category, Comment, Product
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ('slug', 'name')
+        fields = ('slug', 'name','id')
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -30,6 +30,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class ProductListSerializer(serializers.ModelSerializer):
+    category = serializers.SlugRelatedField(slug_field='slug' ,read_only=True)
     class Meta:
         model = Product
         fields = ('slug', 'name', 'description',

@@ -1,0 +1,12 @@
+.CategoriesList{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.CategoriesList__item{
+    flex: 0 0 200px;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid gray;
+}

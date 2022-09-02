@@ -17,7 +17,7 @@ class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
     lookup_field = 'slug'
-
+    filterset_fields = ['category']
     def get_serializer_class(self):
         print(self.action)
         if self.action == 'retrieve':
