@@ -21,10 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-g&=#29*^88_*1qq*-iey_@%&)$ekm&2*+dcuvd809xla9y)8#y') 
+SECRET_KEY = os.getenv(
+    'DJANGO_SECRET_KEY', 'django-insecure-g&=#29*^88_*1qq*-iey_@%&)$ekm&2*+dcuvd809xla9y)8#y')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DJANGO_DEBUG', True)
+DEBUG = bool(int(os.getenv('DJANGO_DEBUG', 1)))
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -183,3 +184,13 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
+
+STATIC_URL = '/assets/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+MEDIA_ROOT = 'media'
+MEDIA_URL = '/media/'

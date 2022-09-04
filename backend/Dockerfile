@@ -35,7 +35,7 @@ RUN addgroup -S app && adduser -S app -G app
 
 # create the appropriate directories
 WORKDIR /app
-RUN mkdir /app/asset /app/media
+RUN mkdir /app/staticfiles /app/media
 
 # install dependencies
 RUN apk update && apk add  bash
@@ -54,4 +54,3 @@ RUN chmod +x /app/entrypoint.sh
 USER app
 EXPOSE 8000
 # run entrypoint.prod.sh
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

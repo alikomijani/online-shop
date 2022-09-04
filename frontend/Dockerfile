@@ -18,4 +18,4 @@ WORKDIR /app
 COPY --from=builder /app/build .
 
 EXPOSE 3000
-CMD ["serve", "-n", "-p", "3000", "-s", "."]
+

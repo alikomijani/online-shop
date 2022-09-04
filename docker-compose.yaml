@@ -2,14 +2,35 @@ version: '3'
 services:
   backend:
     build: ./backend
-    # command: python manage.py runserver 0.0.0.0:8000
     env_file:
-      - ./.env.dev
+      - ./backend/.env
+    command: gunicorn backend.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    expose:
+      - 8000
   frontend:
     build: ./frontend
-  nginx:
-    image: nginx
-    ports:
-      - 8000:80
+    command: "serve -n -p 3000 -s ."
+    depends_on:
+      - backend
     volumes:
-      - ./src:/usr/share/nginx/html
+      - front_volume:/app/static
+    expose:
+      - 3000
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+      - front_volume:/app/front
+    ports:
+      - 1337:80
+    depends_on:
+      - frontend
+
+volumes:
+  media_volume:
+  static_volume:
+  front_volume:
