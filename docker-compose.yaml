@@ -8,8 +8,8 @@ services:
     volumes:
       - static_volume:/app/staticfiles
       - media_volume:/app/media
-    expose:
-      - 8000
+    ports:
+      - 8000:8000
   frontend:
     build: ./frontend
     command: "serve -n -p 3000 -s ."
