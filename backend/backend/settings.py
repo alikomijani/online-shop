@@ -27,11 +27,7 @@ SECRET_KEY = os.getenv(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(os.getenv('DJANGO_DEBUG', 1)))
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
-]
-
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS','').split(",")
 AUTH_USER_MODEL = 'accounts.User'
 
 
@@ -65,7 +61,8 @@ MIDDLEWARE = [
 ]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://localhost:1337/"
+    "http://82.115.20.92:1337",
+    "http://82.115.20.92",
 ]
 ROOT_URLCONF = 'backend.urls'
 

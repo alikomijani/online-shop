@@ -26,7 +26,7 @@ services:
       - media_volume:/app/media
       - front_volume:/app/front
     ports:
-      - 1337:80
+      - 80:80
     depends_on:
       - frontend
 
